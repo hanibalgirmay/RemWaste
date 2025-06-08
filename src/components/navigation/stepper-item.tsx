@@ -1,5 +1,6 @@
 import React from "react";
 import type { Steppers } from "../../types/stepper";
+import clsx from "clsx";
 
 type Props = {
   data: Steppers;
@@ -16,62 +17,82 @@ const StepperItem = ({
   isCompleted = false,
   isClickable,
   onClick,
-  isLastItem
+  isLastItem,
 }: Props) => {
   const { title, icon: IconComponent } = data;
 
-  const itemClasses = [
-    "min-w-[250px]",
-    "flex",
-    "md:w-full",
-    "items-center",
-    // "dark:after:border-gray-700",
-    isLastItem
-      ? ""
-      : "sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700",
-    "relative", // For the circular indicator if needed
-    isClickable ? "cursor-pointer" : "cursor-not-allowed opacity-70", // Visual feedback for clickability
-    // Text and border color based on state
-    isCompleted
-      ? "text-blue-600 dark:text-blue-500 after:border-blue-600 dark:after:border-blue-500"
-      : isActive
-      ? "text-blue-600 dark:text-blue-500 after:border-blue-600 dark:after:border-blue-500"
-      : "text-gray-500 dark:text-gray-400 after:border-gray-200",
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const itemClasses = clsx(
+    "relative flex items-center md:w-full",
+    "group",
+    isClickable ? "cursor-pointer" : "cursor-not-allowed",
+    "text-gray-400 dark:text-gray-500",
+    {
+      "text-blue-600 dark:text-blue-400": isActive || isCompleted,
+    }
+  );
 
-  const spanClasses = [
-    "w-full",
-    "flex",
-    "items-center",
-    "after:content-['/']",
-    "sm:after:hidden",
-    "after:mx-2",
-    "capitalize",
-    "after:text-gray-200",
-    "dark:after:text-gray-500",
-    "font-medium",
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const horizontalConnectorClasses = clsx(
+    // "hidden sm:block",
+    "flex-grow w-full",
+    "h-0.5",
+    // "mx-2 md:mx-4 xl:mx-8",
+    "bg-gray-700 dark:bg-gray-600",
+    {
+      "bg-blue-600 dark:bg-blue-500": isCompleted,
+    }
+  );
+
+  const indicatorClasses = clsx(
+    "flex items-center justify-center",
+    "w-8 h-8 md:w-10 md:h-10",
+    "rounded-full",
+    "transition-all duration-300 ease-in-out",
+    "border-2",
+    {
+      "bg-gray-700 border-gray-600 text-gray-400": !isActive && !isCompleted,
+      "bg-blue-600 border-blue-600 text-white shadow-lg transform scale-105":
+        isActive,
+      "bg-blue-600 border-blue-600 text-white": isCompleted,
+      "group-hover:bg-blue-700 group-hover:border-blue-700 group-hover:text-white":
+        isClickable && !isActive,
+    }
+  );
+
+  const iconClasses = clsx(
+    "h-5 w-5 md:h-6 md:w-6",
+    "transition-colors duration-300",
+    {
+      "text-white": isActive || isCompleted,
+      "text-gray-400 group-hover:text-white": !isActive && !isCompleted,
+    }
+  );
+
+  const titleClasses = clsx(
+    "font-medium mt-1 text-sm md:text-base capitalize",
+    "whitespace-nowrap overflow-hidden text-ellipsis",
+    "transition-colors duration-300",
+    {
+      "text-blue-600 dark:text-blue-400": isActive || isCompleted,
+      "text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-300":
+        !isActive && !isCompleted,
+    }
+  );
 
   return (
     <li className={itemClasses}>
       <button
         onClick={isClickable ? onClick : undefined}
-        className="flex p-2 outline-none border-0 items-center text-left focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md" // Styling for the button within the li
+        className="flex flex-row gap-3 justify-center items-center flex-grow p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
         disabled={!isClickable}
+        aria-current={isActive ? "step" : undefined}
       >
-        <span className={spanClasses}>
-          {IconComponent && (
-            <IconComponent
-              className={`h-8 w-8 mr-2 ${isActive ? "text-blue-700" : ""}`}
-            />
-          )}
-          {title}
-        </span>
+        <div className={indicatorClasses}>
+          {IconComponent && <IconComponent className={iconClasses} />}
+        </div>
+        <span className={titleClasses}>{title}</span>
       </button>
+      {!isLastItem && <div className={horizontalConnectorClasses}></div>}
+
     </li>
   );
 };

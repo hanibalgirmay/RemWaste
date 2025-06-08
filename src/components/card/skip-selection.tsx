@@ -50,51 +50,6 @@ const SkipSelection: React.FC<SkipSelectionProps> = ({ options }) => {
           />
         ))}
       </div>
-
-      {currentSelectedOption && (
-        <div className="mt-12 text-center text-gray-300 p-6 rounded-lg bg-gray-800 shadow-lg">
-          <p className="text-xl font-medium mb-2">
-            You've selected the{" "}
-            <span className="text-blue-400 font-bold">
-              {currentSelectedOption.size} Yard Skip
-            </span>
-            !
-          </p>
-          <p className="text-lg">
-            Price:{" "}
-            <span className="font-semibold text-blue-300">
-              £
-              {(
-                currentSelectedOption.price_before_vat *
-                (1 + currentSelectedOption.vat / 100)
-              ).toLocaleString("en-GB", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}
-            </span>
-            <br />
-            Hire period:{" "}
-            <span className="font-semibold">
-              {currentSelectedOption.hire_period_days} days
-            </span>
-            <br />
-            {currentSelectedOption.allowed_on_road
-              ? "Road permit likely required."
-              : "No road permit needed (off road placement)."}
-          </p>
-          <button
-            className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-blue-500/50"
-            onClick={() =>
-              console.log(
-                "Proceed to next step with selected skip ID:",
-                selectedSkipId
-              )
-            }
-          >
-            Proceed to Checkout
-          </button>
-        </div>
-      )}
     </div>
   );
 };

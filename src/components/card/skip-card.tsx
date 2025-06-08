@@ -1,13 +1,9 @@
-// components/SkipCard.tsx
 import React from "react";
 import clsx from "clsx";
-import {
-  CheckCircle,
-  XCircle,
-  Package,
-  Construction,
-} from "lucide-react";
+import { CheckCircle, XCircle, Package, Construction } from "lucide-react";
 import type { SkipOption } from "../../types/skip";
+import { useHirePeriodDisplay } from "../../hooks/useHirePeriodDisplay";
+import { useFormattedPrice } from "../../hooks/useFormattedPrice";
 
 interface SkipCardProps {
   option: SkipOption;
@@ -20,53 +16,45 @@ const SkipCard: React.FC<SkipCardProps> = ({
   isSelected,
   onSelectSkip,
 }) => {
-  // Destructure properties from the new data structure
   const {
     id,
     size,
-    hire_period_days,
-    price_before_vat,
-    vat,
     forbidden,
     allowed_on_road,
     allows_heavy_waste,
-    imageUrl = 'https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/4-yarder-skip.jpg',
+    imageUrl = "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/4-yarder-skip.jpg",
   } = option;
 
-  // Calculate the total price including VAT
-  const totalPrice = price_before_vat * (1 + vat / 100);
-  const formattedPrice = `£${totalPrice.toLocaleString("en-GB", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  })}`;
-  const hirePeriodDisplay = `${hire_period_days} day hire period`;
+  const { formattedPrice } = useFormattedPrice({
+    price_before_vat: option.price_before_vat,
+    vat: option.vat,
+  });
 
-  // Dynamic classes for the main card container
+  const hirePeriodDisplay = useHirePeriodDisplay({
+    hire_period_days: option.hire_period_days,
+  });
+
   const cardClasses = clsx(
     "relative flex flex-col rounded-2xl p-4 overflow-hidden",
     "shadow-xl transition-all duration-300 ease-in-out",
-    "bg-gray-800 border-2", // Base dark theme card
+    "bg-gray-800 border-2",
     {
-      // Selected state
       "border-blue-500 ring-4 ring-blue-500/50 transform scale-[1.02] shadow-2xl":
         isSelected,
-      // Hover state for unselected, not forbidden cards
       "hover:border-blue-600 hover:shadow-2xl hover:-translate-y-1 hover:shadow-blue-500/30":
         !isSelected && !forbidden,
-      // Forbidden state
       "border-red-600 bg-gray-900 opacity-50 cursor-not-allowed": forbidden,
-      "border-transparent": !isSelected && !forbidden, // Default border for unselected, not forbidden
+      "border-transparent": !isSelected && !forbidden,
     }
   );
 
-  // Dynamic classes for the button
   const buttonClasses = clsx(
     "w-full py-3 rounded-xl font-semibold text-lg transition-all duration-300 ease-in-out flex items-center justify-center",
     {
       "bg-blue-600 text-white cursor-default": isSelected,
-      "bg-red-700 text-white cursor-not-allowed": forbidden, // Forbidden button style
+      "bg-red-700 text-white cursor-not-allowed": forbidden,
       "bg-gray-700 text-gray-200 hover:bg-blue-600 hover:text-white group":
-        !isSelected && !forbidden, // Unselected, not forbidden button style
+        !isSelected && !forbidden,
     }
   );
 
@@ -142,7 +130,7 @@ const SkipCard: React.FC<SkipCardProps> = ({
         <button
           onClick={() => onSelectSkip(id)}
           className={buttonClasses}
-          disabled={isSelected || forbidden} // Disable if selected or forbidden
+          disabled={isSelected || forbidden}
         >
           {forbidden
             ? "Unavailable"
