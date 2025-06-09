@@ -1,4 +1,3 @@
-import React from "react";
 import { usePromiseTracker } from "react-promise-tracker";
 import { Hourglass } from "ldrs/react";
 import "ldrs/react/Hourglass.css";
