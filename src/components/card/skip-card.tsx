@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { XCircle, Package, Construction } from "lucide-react";
+import { XCircle, Package, Construction, TriangleAlert } from "lucide-react";
 import type { SkipOption } from "../../types/skip";
 import { useHirePeriodDisplay } from "../../hooks/useHirePeriodDisplay";
 import { useFormattedPrice } from "../../hooks/useFormattedPrice";
@@ -80,6 +80,12 @@ const SkipCard: React.FC<SkipCardProps> = ({
         <span className="absolute top-3 right-3 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
           {size} Yards
         </span>
+        {!allowed_on_road && !forbidden && (
+          <div className="absolute top-3 left-3 bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded-md shadow-md flex items-center space-x-1">
+            <TriangleAlert className="h-4 w-4" />
+            <span>Not Allowed On The Road</span>
+          </div>
+        )}
       </div>
 
       {/* Content Section */}
@@ -89,15 +95,9 @@ const SkipCard: React.FC<SkipCardProps> = ({
         <div className="flex items-center gap-4 text-gray-300 text-sm mb-4">
           <span className="flex items-center gap-1">
             {allowed_on_road ? (
-              <Construction
-                className="h-4 w-4 text-green-400"
-                // title="Allowed on road"
-              />
+              <Construction className="h-4 w-4 text-green-400" />
             ) : (
-              <XCircle
-                className="h-4 w-4 text-red-400"
-                // title="Not allowed on road"
-              />
+              <XCircle className="h-4 w-4 text-red-400" />
             )}
             <span className="font-medium">
               {allowed_on_road ? "On Road" : "No Road"}
@@ -105,15 +105,9 @@ const SkipCard: React.FC<SkipCardProps> = ({
           </span>
           <span className="flex items-center gap-1">
             {allows_heavy_waste ? (
-              <Package
-                className="h-4 w-4 text-green-400"
-                // title="Allows heavy waste"
-              />
+              <Package className="h-4 w-4 text-green-400" />
             ) : (
-              <XCircle
-                className="h-4 w-4 text-red-400"
-                // title="No heavy waste"
-              />
+              <XCircle className="h-4 w-4 text-red-400" />
             )}
             <span className="font-medium">
               {allows_heavy_waste ? "Heavy Waste" : "Light Waste"}

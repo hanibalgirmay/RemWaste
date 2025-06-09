@@ -17,6 +17,8 @@ const initialSkipOptions: SkipOption[] = [
     updated_at: "2025-04-07T13:16:52.813",
     allowed_on_road: true,
     allows_heavy_waste: true,
+    imageUrl:
+      "	https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/4-yarder-skip.jpg",
   },
   {
     id: 17934,
@@ -33,6 +35,8 @@ const initialSkipOptions: SkipOption[] = [
     updated_at: "2025-04-07T13:16:52.992",
     allowed_on_road: true,
     allows_heavy_waste: true,
+    imageUrl:
+      "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/5-yarder-skip.jpg",
   },
   {
     id: 17935,
@@ -49,6 +53,8 @@ const initialSkipOptions: SkipOption[] = [
     updated_at: "2025-04-07T13:16:53.171",
     allowed_on_road: true,
     allows_heavy_waste: true,
+    imageUrl:
+      "	https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/6-yarder-skip.jpg",
   },
   {
     id: 17936,
@@ -65,6 +71,8 @@ const initialSkipOptions: SkipOption[] = [
     updated_at: "2025-04-07T13:16:53.339",
     allowed_on_road: false,
     allows_heavy_waste: false,
+    imageUrl:
+      "	https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/8-yarder-skip.jpg",
   },
   {
     id: 17937,
@@ -81,6 +89,8 @@ const initialSkipOptions: SkipOption[] = [
     updated_at: "2025-04-07T13:16:53.516",
     allowed_on_road: false,
     allows_heavy_waste: false,
+    imageUrl:
+      "	https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/8-yarder-skip.jpg",
   },
   {
     id: 17938,
@@ -97,6 +107,8 @@ const initialSkipOptions: SkipOption[] = [
     updated_at: "2025-04-07T13:16:53.69",
     allowed_on_road: false,
     allows_heavy_waste: false,
+    imageUrl:
+      "	https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/8-yarder-skip.jpg",
   },
   {
     id: 17939,
@@ -113,6 +125,8 @@ const initialSkipOptions: SkipOption[] = [
     updated_at: "2025-04-07T13:16:53.876",
     allowed_on_road: false,
     allows_heavy_waste: false,
+    imageUrl:
+      "	https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/14-yarder-skip.jpg",
   },
   {
     id: 15124,
@@ -129,6 +143,8 @@ const initialSkipOptions: SkipOption[] = [
     updated_at: "2025-04-07T13:16:52.434",
     allowed_on_road: false,
     allows_heavy_waste: true,
+    imageUrl:
+      "	https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/16-yarder-skip.jpg",
   },
   {
     id: 15125,
@@ -145,6 +161,8 @@ const initialSkipOptions: SkipOption[] = [
     updated_at: "2025-04-07T13:16:52.603",
     allowed_on_road: false,
     allows_heavy_waste: false,
+    imageUrl:
+      "https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/20-yarder-skip.jpg",
   },
 ];
 
