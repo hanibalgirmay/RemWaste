@@ -6,9 +6,18 @@ import { useSkipStore } from "./store/useSkipStore";
 import { ArrowRight } from "lucide-react";
 import { useHirePeriodDisplay } from "./hooks/useHirePeriodDisplay";
 import { useFormattedPrice } from "./hooks/useFormattedPrice";
+import skipService from "./services/skip-service-api";
+import { useEffect } from "react";
+import { trackPromise } from "react-promise-tracker";
 
 function App() {
-  const { skipOptions, selectedSkipId } = useSkipStore();
+  const { skipOptions, setSkipOptions, selectedSkipId } = useSkipStore();
+
+  //api call
+  const fetchSkips = async () => {
+    const fetchedSkipData = await skipService.getSkipOptions();
+    setSkipOptions(fetchedSkipData);
+  };
 
   // Find the selected skip option from the store
   const selectedSkipOption = selectedSkipId
@@ -29,6 +38,10 @@ function App() {
       ? { hire_period_days: selectedSkipOption.hire_period_days }
       : { hire_period_days: 0 }
   );
+
+  useEffect(() => {
+    trackPromise(fetchSkips());
+  }, []);
 
   return (
     <MainLayout className="pt-10 md:pb-20 pb-40">

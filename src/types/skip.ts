@@ -1,4 +1,4 @@
-export interface SkipOption {
+export interface ApiSkipOption {
   id: number;
   size: number;
   hire_period_days: number;
@@ -13,5 +13,8 @@ export interface SkipOption {
   updated_at: string;
   allowed_on_road: boolean;
   allows_heavy_waste: boolean;
-  imageUrl?: string; // Optional property for the image URL
+}
+
+export interface SkipOption extends ApiSkipOption {
+  imageUrl: string; 
 }
