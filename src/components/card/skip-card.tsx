@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { CheckCircle, XCircle, Package, Construction } from "lucide-react";
+import { XCircle, Package, Construction } from "lucide-react";
 import type { SkipOption } from "../../types/skip";
 import { useHirePeriodDisplay } from "../../hooks/useHirePeriodDisplay";
 import { useFormattedPrice } from "../../hooks/useFormattedPrice";

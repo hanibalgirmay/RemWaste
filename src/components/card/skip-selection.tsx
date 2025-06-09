@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import SkipCard from "./skip-card";
 import type { SkipOption } from "../../types/skip";
 import { useSkipStore } from "../../store/useSkipStore";
@@ -8,7 +8,7 @@ interface SkipSelectionProps {
 }
 
 const SkipSelection: React.FC<SkipSelectionProps> = ({ options }) => {
-  const { skipOptions, selectedSkipId, setSelectedSkipId } = useSkipStore();
+  const { selectedSkipId, setSelectedSkipId } = useSkipStore();
 
   const handleSelectSkip = (id: number) => {
     if (selectedSkipId === id) {
@@ -19,10 +19,6 @@ const SkipSelection: React.FC<SkipSelectionProps> = ({ options }) => {
       console.log(`Selected skip ID: ${id}`);
     }
   };
-
-  const currentSelectedOption = selectedSkipId
-    ? skipOptions.find((o) => o.id === selectedSkipId)
-    : null;
 
   return (
     <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">

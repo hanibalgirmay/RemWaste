@@ -106,3 +106,6 @@ Follow these steps to get the project up and running on your local machine:
 * **Global Overlay for User Feedback:** The selected skip card's summary information is presented in a global, sticky overlay at the bottom. This ensures crucial information and navigation options are always accessible on the relevant step, regardless of scroll position. This centralizes the overlay logic in `App.tsx` rather than repeating it per `SkipCard`.
 
 ---
+
+##
+Develop by Hanibal Girmay

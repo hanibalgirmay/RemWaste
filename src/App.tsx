@@ -1,4 +1,3 @@
-import { useState } from "react";
 import StepperContent from "./components/navigation/stepper-content";
 import MainLayout from "./layouts/main-layout";
 
@@ -7,7 +6,6 @@ import { useSkipStore } from "./store/useSkipStore";
 import { ArrowRight } from "lucide-react";
 import { useHirePeriodDisplay } from "./hooks/useHirePeriodDisplay";
 import { useFormattedPrice } from "./hooks/useFormattedPrice";
-import { useStepperStore } from "./store/useStepperStore";
 
 function App() {
   const { skipOptions, selectedSkipId } = useSkipStore();

@@ -1,4 +1,3 @@
-// stores/useStepperStore.ts
 import { create } from "zustand";
 import { type Steppers } from "../types/stepper";
 import {

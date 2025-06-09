@@ -1,4 +1,3 @@
-import React from "react";
 import type { Steppers } from "../../types/stepper";
 import clsx from "clsx";
 
