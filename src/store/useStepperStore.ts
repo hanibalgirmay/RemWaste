@@ -63,7 +63,7 @@ const initalState: TStepperState = {
   isCurrentFormValid: false,
 };
 
-export const useStepperStore = create<TStepperState & TActions>((set, get) => ({
+export const useStepperStore = create<TStepperState & TActions>((set) => ({
   ...initalState,
 
   setStepperForms: (forms) => {
